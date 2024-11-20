@@ -1,0 +1,130 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "HA Surgical Guides";
+}
+
+<div class="text-center">
+    <!-- Translucent Background Container for Logo -->
+    <div class="logo-container">
+        <img src="NewFolder/logo.png" alt="Your Logo" class="logo" onclick="refreshPage()" />
+    </div>
+
+    <h1 class="display-4">Precision Planning. Guided Surgery.</h1>
+    <h2>We Help Dental Clinics Thrive With Precision Crafted Surgical Guides.</h2>
+
+    <!-- New Text Section -->
+    <div class="textbox">
+        At HA Surgical Guides, we are a specialized Dental Laboratory, delivering full-service Implant Planning and Surgical Guides. We are built by Dentists, for Dentists, to provide exceptional implant treatment outcomes for your practice.
+    </div>
+
+    <!-- Additional Text Section -->
+    <div class="additional-info">
+        OK... How Do You Get The Most Out Of HA Surgical Guides?
+    </div>
+
+    <!-- New Future-Oriented Text -->
+    <div class="future-info">
+        The Future of Guided Dental Implant Surgery
+    </div>
+
+    <a href="#your-target-section" class="btn-plan-case">Plan Your Next Case</a> <!-- Button -->
+</div>
+
+<!-- Hidden Form Container (Initially Hidden) -->
+<div id="formContainer" style="display: none;">
+    <form action="submit_form.php" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea><br><br>
+
+        <input type="submit" value="Submit">
+        <button type="button" id="cancelBtn">Cancel</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        function refreshPage() {
+            location.reload(); // Refreshes the page
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select all elements to animate
+            const elementsToAnimate = document.querySelectorAll('.future-info, .image');
+
+            // Create Intersection Observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate'); // Add animation class
+                        observer.unobserve(entry.target); // Stop observing after animation
+                    }
+                });
+            }, {
+                threshold: 0.2 // Trigger animation when 20% of the element is visible
+            });
+
+            // Observe all elements
+            elementsToAnimate.forEach(element => observer.observe(element));
+
+            // Show form when the "Plan Your Next Case" button is clicked
+            document.querySelector('.btn-plan-case').addEventListener('click', function() {
+                document.getElementById('formContainer').style.display = "block"; // Show the form
+                this.style.display = "none"; // Hide the button after click
+            });
+
+            // Hide form when the "Cancel" button is clicked
+            document.getElementById("cancelBtn").addEventListener("click", function() {
+                document.getElementById("formContainer").style.display = "none"; // Hide the form
+                document.querySelector('.btn-plan-case').style.display = "block"; // Show the button again
+            });
+        });
+    </script>
+}
+
+<div class="guarantee-box">
+    <h2>REDUCE PATIENT CHAIR TIME</h2>
+    <p>Implant guesswork can be complex and time-consuming.</p>
+    <p>We help you get it right first-try to save you valuable time.</p>
+</div>
+
+<div class="precision-box">
+    <h2>MINIMISE INVASIVE PROCEDURES</h2>
+    <p>Flapless techniques are increasingly common with Surgical Guides.</p>
+    <p>We streamline the surgical process from start to finish.</p>
+</div>
+
+<div class="efficiency-box">
+    <h2>IMPROVE TREATMENT OUTCOMES.</h2>
+    <p>Pre-surgical planning helps reduce trial and error.</p>
+    <p>We optimise your workflow to eliminate common complications.</p>
+</div>
+
+<div class="local-planning-box">
+    <h2>SPECIALISATION</h2>
+    <p>Dental Labs can be a Jack of all trades and master of none.</p>
+    <p>We only give you expert Implant Planners to deal with.</p>
+</div>
+
+<!-- Image Container -->
+<div class="image-container">
+    <img src="NewFolder/Untitled-1.png" alt="Untitled-1" class="image" id="untitled1">
+    <img src="NewFolder/Untitled-2.png" alt="Untitled-2" class="image" id="untitled2">
+    <img src="NewFolder/Untitled-3.png" alt="Untitled-3" class="image" id="untitled3">
+    <img src="NewFolder/Untitled-4.png" alt="Untitled-4" class="image" id="untitled4">
+</div>
+
+<div class="contact-info">
+    Reach Out To Us Below To Get Started
+</div>
+
+<button class="plan-your-case-btn">Plan Your Next Case</button>
+
+<!-- Added New Logo (logo - copy.png) -->
+<img src="NewFolder/logo - copy.png" alt="Your Logo - Copy" class="logo-copy" onclick="refreshPage()" />
